@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: slsa-deploy
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: slsa-app
+
+  # Pod 템플릿
+  template:
+    metadata:
+      labels:
+        app: slsa-app
+
+    spec:
+      containers:
+      - name: app
+        image: ghcr.io/mjttong/slsa-study:sha-1bf6c4b7ad6922effc8bd4278fcfb9dcfcdfc9cc
