@@ -28,20 +28,15 @@ spec:
     
     verifyImages:
     - imageReferences:
-      - "ghcr.io/mjttong:*"
+      - "*"
       
       # SBOM Attestation 검증
       attestations:
-      
-      # CycloneDX SBOM 형식
-      - predicateType: https://cyclonedx.org/schema
-        
-        # SBOM도 동일한 파이프라인에서 생성되었는지 검증
+      - type: https://cyclonedx.org/bom
         attestors:
         - entries:
           - keyless:
-              url: https://fulcio.sigstore.dev
               issuer: "https://token.actions.githubusercontent.com"
-              subject: "repo:mjttong/slsa-study/.*"
+              subject: "https://github.com/mjttong/slsa-study/.github/workflows/*"
               rekor:
                 url: https://rekor.sigstore.dev
